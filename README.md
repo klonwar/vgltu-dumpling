@@ -13,5 +13,5 @@
 ## Команда
 
 * [@klonwar](https://github.com/klonwar) - Дмитрий Арапов
-* [a1tSignature](https://github.com/a1tSignature) - Вадим Бойченко
-* [IzyaAbram](https://github.com/IzyaAbram) - Данила Давыденко
+* [@a1tSignature](https://github.com/a1tSignature) - Вадим Бойченко
+* [@IzyaAbram](https://github.com/IzyaAbram) - Данила Давыденко
