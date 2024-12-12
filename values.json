@@ -1,0 +1,12 @@
+{
+  "daily_product_output": 10000,
+  "shift_duration": 8,
+  "dumpling_machine_capacity": 300,
+  "dough_mass_fraction": 40,
+  "dough_kneader_capacity": 100,
+  "cutter_capacity": 200,
+  "meat_mass_fraction": 50,
+  "eggs_mass_fraction": 5,
+  "salt_mass_fraction": 3,
+  "spices_mass_fraction": 2
+}
