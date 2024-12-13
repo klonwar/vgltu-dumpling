@@ -90,3 +90,18 @@ def calculate_cutters_count(daily_output, shift_hours, dough_fraction, cutter_ca
     required_count = math.ceil(filling_output / cutter_capacity)
     print("Соотношение для куттеров:", filling_output / cutter_capacity)
     return required_count
+
+
+def is_ingredient_composition_valid(dough, meat, eggs, salt, spices):
+    """
+    Проверяет, что сумма массовых долей всех ингредиентов равна 100%.
+
+    :param dough: доля теста (%)
+    :param meat: доля мяса (%)
+    :param eggs: доля яиц (%)
+    :param salt: доля соли (%)
+    :param spices: доля специй (%)
+    :return: True, если сумма равна 100%, иначе False
+    """
+    total_fraction = dough + meat + eggs + salt + spices
+    return math.isclose(total_fraction, 100.0, rel_tol=1e-9)
