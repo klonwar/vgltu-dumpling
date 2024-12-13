@@ -42,3 +42,51 @@ print(f"Массовая доля яиц (%) (eggs_mass_fraction): {eggs_mass_fr
 print(f"Массовая доля соли (%) (salt_mass_fraction): {salt_mass_fraction}")
 print(f"Массовая доля специй (%) (spices_mass_fraction): {spices_mass_fraction}")
 print()
+
+def calculate_dumpling_machine_count(daily_output, shift_hours, machine_capacity):
+    """
+    Рассчитывает необходимое количество пельменных автоматов.
+
+    :param daily_output: суточная выработка готовой продукции (Qсут)
+    :param shift_hours: длительность рабочей смены (t)
+    :param machine_capacity: производительность одного пельменного автомата
+    :return: количество автоматов (округление вверх)
+    """
+    half_shift_output = daily_output / (2 * shift_hours)
+    required_count = math.ceil(half_shift_output / machine_capacity)
+    print("Соотношение для пельменных автоматов:", half_shift_output / machine_capacity)
+    return required_count
+
+
+def calculate_dough_kneaders_count(daily_output, shift_hours, dough_fraction, kneader_capacity):
+    """
+    Рассчитывает необходимое количество тестомесильных машин.
+
+    :param daily_output: суточная выработка готовой продукции (Qсут)
+    :param shift_hours: длительность рабочей смены (t)
+    :param dough_fraction: массовая доля теста в готовой продукции (%)
+    :param kneader_capacity: производительность тестомесильной машины
+    :return: количество машин (округление вверх)
+    """
+    half_shift_output = daily_output / (2 * shift_hours)
+    dough_output = half_shift_output * dough_fraction / 100.0
+    required_count = math.ceil(dough_output / kneader_capacity)
+    print("Соотношение для тестомесильных машин:", dough_output / kneader_capacity)
+    return required_count
+
+
+def calculate_cutters_count(daily_output, shift_hours, dough_fraction, cutter_capacity):
+    """
+    Рассчитывает необходимое количество куттеров.
+
+    :param daily_output: суточная выработка готовой продукции (Qсут)
+    :param shift_hours: длительность рабочей смены (t)
+    :param dough_fraction: массовая доля теста в готовой продукции (%)
+    :param cutter_capacity: производительность куттера
+    :return: количество куттеров (округление вверх)
+    """
+    half_shift_output = daily_output / (2 * shift_hours)
+    filling_output = ((100 - dough_fraction) * half_shift_output) / 100.0
+    required_count = math.ceil(filling_output / cutter_capacity)
+    print("Соотношение для куттеров:", filling_output / cutter_capacity)
+    return required_count
