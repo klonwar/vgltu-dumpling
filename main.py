@@ -74,3 +74,19 @@ def calculate_dough_kneaders_count(daily_output, shift_hours, dough_fraction, kn
     print("Соотношение для тестомесильных машин:", dough_output / kneader_capacity)
     return required_count
 
+
+def calculate_cutters_count(daily_output, shift_hours, dough_fraction, cutter_capacity):
+    """
+    Рассчитывает необходимое количество куттеров.
+
+    :param daily_output: суточная выработка готовой продукции (Qсут)
+    :param shift_hours: длительность рабочей смены (t)
+    :param dough_fraction: массовая доля теста в готовой продукции (%)
+    :param cutter_capacity: производительность куттера
+    :return: количество куттеров (округление вверх)
+    """
+    half_shift_output = daily_output / (2 * shift_hours)
+    filling_output = ((100 - dough_fraction) * half_shift_output) / 100.0
+    required_count = math.ceil(filling_output / cutter_capacity)
+    print("Соотношение для куттеров:", filling_output / cutter_capacity)
+    return required_count
