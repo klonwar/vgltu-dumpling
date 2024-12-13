@@ -105,3 +105,19 @@ def is_ingredient_composition_valid(dough, meat, eggs, salt, spices):
     """
     total_fraction = dough + meat + eggs + salt + spices
     return math.isclose(total_fraction, 100.0, rel_tol=1e-9)
+
+# Основная логика
+if is_ingredient_composition_valid(dough_mass_fraction,
+                                   meat_mass_fraction,
+                                   eggs_mass_fraction,
+                                   salt_mass_fraction,
+                                   spices_mass_fraction):
+    num_dumpling_machines = calculate_dumpling_machine_count(daily_product_output, shift_duration, dumpling_machine_capacity)
+    num_dough_kneaders = calculate_dough_kneaders_count(daily_product_output, shift_duration, dough_mass_fraction, dough_kneader_capacity)
+    num_cutters = calculate_cutters_count(daily_product_output, shift_duration, dough_mass_fraction, cutter_capacity)
+
+    print("Количество пельменных автоматов:", num_dumpling_machines)
+    print("Количество тестомесильных машин:", num_dough_kneaders)
+    print("Количество куттеров:", num_cutters)
+else:
+    print("Состав ингредиентов некорректен: сумма долей не равна 100%.")
