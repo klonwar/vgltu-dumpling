@@ -42,3 +42,17 @@ print(f"Массовая доля яиц (%) (eggs_mass_fraction): {eggs_mass_fr
 print(f"Массовая доля соли (%) (salt_mass_fraction): {salt_mass_fraction}")
 print(f"Массовая доля специй (%) (spices_mass_fraction): {spices_mass_fraction}")
 print()
+
+def calculate_dumpling_machine_count(daily_output, shift_hours, machine_capacity):
+    """
+    Рассчитывает необходимое количество пельменных автоматов.
+
+    :param daily_output: суточная выработка готовой продукции (Qсут)
+    :param shift_hours: длительность рабочей смены (t)
+    :param machine_capacity: производительность одного пельменного автомата
+    :return: количество автоматов (округление вверх)
+    """
+    half_shift_output = daily_output / (2 * shift_hours)
+    required_count = math.ceil(half_shift_output / machine_capacity)
+    print("Соотношение для пельменных автоматов:", half_shift_output / machine_capacity)
+    return required_count
