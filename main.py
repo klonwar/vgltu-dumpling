@@ -90,3 +90,34 @@ def calculate_cutters_count(daily_output, shift_hours, dough_fraction, cutter_ca
     required_count = math.ceil(filling_output / cutter_capacity)
     print("Соотношение для куттеров:", filling_output / cutter_capacity)
     return required_count
+
+
+def is_ingredient_composition_valid(dough, meat, eggs, salt, spices):
+    """
+    Проверяет, что сумма массовых долей всех ингредиентов равна 100%.
+
+    :param dough: доля теста (%)
+    :param meat: доля мяса (%)
+    :param eggs: доля яиц (%)
+    :param salt: доля соли (%)
+    :param spices: доля специй (%)
+    :return: True, если сумма равна 100%, иначе False
+    """
+    total_fraction = dough + meat + eggs + salt + spices
+    return math.isclose(total_fraction, 100.0, rel_tol=1e-9)
+
+# Основная логика
+if is_ingredient_composition_valid(dough_mass_fraction,
+                                   meat_mass_fraction,
+                                   eggs_mass_fraction,
+                                   salt_mass_fraction,
+                                   spices_mass_fraction):
+    num_dumpling_machines = calculate_dumpling_machine_count(daily_product_output, shift_duration, dumpling_machine_capacity)
+    num_dough_kneaders = calculate_dough_kneaders_count(daily_product_output, shift_duration, dough_mass_fraction, dough_kneader_capacity)
+    num_cutters = calculate_cutters_count(daily_product_output, shift_duration, dough_mass_fraction, cutter_capacity)
+
+    print("Количество пельменных автоматов:", num_dumpling_machines)
+    print("Количество тестомесильных машин:", num_dough_kneaders)
+    print("Количество куттеров:", num_cutters)
+else:
+    print("Состав ингредиентов некорректен: сумма долей не равна 100%.")
