@@ -56,3 +56,21 @@ def calculate_dumpling_machine_count(daily_output, shift_hours, machine_capacity
     required_count = math.ceil(half_shift_output / machine_capacity)
     print("Соотношение для пельменных автоматов:", half_shift_output / machine_capacity)
     return required_count
+
+
+def calculate_dough_kneaders_count(daily_output, shift_hours, dough_fraction, kneader_capacity):
+    """
+    Рассчитывает необходимое количество тестомесильных машин.
+
+    :param daily_output: суточная выработка готовой продукции (Qсут)
+    :param shift_hours: длительность рабочей смены (t)
+    :param dough_fraction: массовая доля теста в готовой продукции (%)
+    :param kneader_capacity: производительность тестомесильной машины
+    :return: количество машин (округление вверх)
+    """
+    half_shift_output = daily_output / (2 * shift_hours)
+    dough_output = half_shift_output * dough_fraction / 100.0
+    required_count = math.ceil(dough_output / kneader_capacity)
+    print("Соотношение для тестомесильных машин:", dough_output / kneader_capacity)
+    return required_count
+
